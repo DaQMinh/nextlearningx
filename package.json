@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "prisma generate && next dev",
+    "build": "prisma generate && prisma db push && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,9 +14,11 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.15.2",
     "@mui/material": "^5.15.2",
+    "@prisma/client": "^5.7.1",
     "dotenv-cli": "^7.3.0",
     "firebase": "^10.7.1",
     "next": "14.0.4",
+    "prisma-json-types-generator": "^3.0.3",
     "react": "^18",
     "react-dom": "^18"
   },

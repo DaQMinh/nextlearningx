@@ -1,47 +1,52 @@
 'use client'
 import {
+  Box,
   Card,
+  CardActionArea,
   Container,
   ImageList,
   ImageListItem,
   ImageListItemBar,
+  Typography,
 } from '@mui/material';
-import { Course } from '../app/(site)/getdata';
 import Link from 'next/link';
 
-interface Props {
-  snippet: Course;
-}
-
-export default function TestCardCourse({ snippet }: Props){
+export default function TestCardCourse({ snippet }: any){
 
   return (
-    <Container>
-      {snippet.subcourses && <ImageList
-        gap={10}
-        sx={{
-          gridTemplateColumns:
-            'repeat(auto-fill, minmax(250px, 1fr))!important',
-        }}
-      >
-        {snippet.subcourses?.map((item) => (
-          <Card key={item.id}>
-            <Link href={`learning/${item.id}`}>
-            <ImageListItem sx={{ height: '100% !important' }}>
-              <img
-                src={item.data.thumbnail}
-                alt={item.data.title}
-                loading="lazy"
-                style={{ cursor: 'pointer' }}
-              />
-              <ImageListItemBar 
-                subtitle={item.data.title}
-              />
-            </ImageListItem>
-            </Link>
-          </Card>
-        ))}
-      </ImageList>}
-    </Container>
+    <>
+      {snippet.map((item :any) => (
+        <Box key={`courseBox${item.id}`}>
+          <Typography>
+            {item.title}
+          </Typography>
+          <ImageList
+            gap={10}
+            sx={{
+              gridTemplateColumns:
+                'repeat(auto-fill, minmax(250px, 1fr))!important',
+            }}
+          >
+            {item.subcourses?.map((subItem : any) => (
+              <Card key={`subcourse${subItem.id}`}>
+                <CardActionArea>
+                <Link href={`learning/${subItem.id}`}>
+                  <ImageListItem sx={{ height: '100% !important' }}>
+                    <img
+                      src={subItem.thumbnail}
+                      alt={subItem.title}
+                      loading="lazy"
+                      style={{ cursor: 'pointer' }}
+                    />
+                    <ImageListItemBar subtitle={subItem.title} />
+                  </ImageListItem>
+                </Link>
+                </CardActionArea>
+              </Card>
+            ))}
+          </ImageList>
+          </Box>
+      ))}
+      </>
   );
-};
+}

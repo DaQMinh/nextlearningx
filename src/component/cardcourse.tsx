@@ -1,16 +1,18 @@
+'use client'
 import React from 'react';
 import { Typography, Card, CardContent, CardMedia, Box , CardActionArea } from "@mui/material";
 import Link from 'next/link';
-import { Course } from '@/app/(site)/getdata';
 
-interface Props {
-  snippet: Course;
-}
-
-export default function CardCourse({ snippet }: Props) {
+export default function CardCourse({ snippet }: any) {
   return (
+    
     <Box>
-      {snippet.subcourses?.map((item) => (
+      {snippet.map((i : any) => (
+        <Box>
+          <Typography variant="h5" gutterBottom  fontWeight="bold">
+          {i.title}
+        </Typography>
+      {i.subcourses.map((item : any) => (
         <Card
           key={item.id} // Moved the key prop to the Card element
           sx={{
@@ -23,8 +25,8 @@ export default function CardCourse({ snippet }: Props) {
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={item.data.thumbnail}
-                alt={item.data.title}
+                image={item.thumbnail}
+                alt={item.title}
               />
             </CardActionArea>
               <CardContent sx={{ backgroundColor: 'background.default' }}>
@@ -36,12 +38,14 @@ export default function CardCourse({ snippet }: Props) {
                     borderRadius: 1
                   }}
                 >
-                  {item.data.title}
+                  {item.title}
                 </Typography>
               </CardContent>
           </Link>
 
         </Card>
+      ))}
+      </Box>
       ))}
     </Box>
   );

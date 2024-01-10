@@ -2,9 +2,38 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
-  
+
+model Course {
+  id         Int         @id @default(autoincrement())
+  title      String      
+  subcourses Subcourse[]
+}
+
+model Subcourse {
+  id        Int    @id @default(autoincrement())
+  title     String 
+  thumbnail String
+  courseId  Int
+  course    Course @relation(fields: [courseId], references: [id])
+  parts     Part[]
+
+  @@index([courseId], name: "courseIdIndex")
+}
+
+model Part {
+  id          Int       @id @default(autoincrement())
+  subcourseId Int
+  playlist    Json
+  subcourse   Subcourse @relation(fields: [subcourseId], references: [id])
+  @@index([subcourseId], name: "subcourseIdIndex")
+}
+
