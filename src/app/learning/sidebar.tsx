@@ -24,7 +24,7 @@ interface Prop {
 
 export default function Sidebar({data , children } : Prop) {
   const pathname = usePathname()
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const drawer = (
     <>
       <Toolbar />
