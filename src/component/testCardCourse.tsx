@@ -3,12 +3,12 @@ import {
   Box,
   Card,
   CardActionArea,
-  Container,
   ImageList,
   ImageListItem,
   ImageListItemBar,
   Typography,
 } from '@mui/material';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function TestCardCourse({ snippet }: any){
@@ -32,7 +32,7 @@ export default function TestCardCourse({ snippet }: any){
                 <CardActionArea>
                 <Link href={`learning/${subItem.id}`}>
                   <ImageListItem sx={{ height: '100% !important' }}>
-                    <img
+                    <Image
                       src={subItem.thumbnail}
                       alt={subItem.title}
                       loading="lazy"
