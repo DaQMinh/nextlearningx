@@ -1,7 +1,10 @@
 'use client'
 import { Box } from '@mui/material';
 import { useSearchParams } from 'next/navigation';
-
+import '@vidstack/react/player/styles/default/theme.css';
+import '@vidstack/react/player/styles/default/layouts/video.css';
+import { MediaPlayer, MediaProvider } from '@vidstack/react';
+import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
 export default function Video() {
   const searchParams = useSearchParams();
   const videoid = searchParams.get('id');
@@ -12,20 +15,11 @@ export default function Video() {
         width: '100%',
         height : '800',
         aspectRatio: '16/9',
-        pointerEvents: 'none',
-      
-        '& iframe': {
-          width: '300%',
-          height: '100%',
-          marginLeft: '-100%',
-        },
       }}>
-        <iframe
-          src={`https://www.youtube.com/embed/${videoid}?autoplay=1&rel=0&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`} 
-          title="YouTube video player" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <MediaPlayer src={`youtube/${videoid}`} >
+        <MediaProvider />
+        <DefaultVideoLayout thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt" icons={defaultLayoutIcons} />
+        </MediaPlayer>
       </Box>
     );
   }

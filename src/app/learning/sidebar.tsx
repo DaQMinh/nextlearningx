@@ -53,8 +53,13 @@ export default function Sidebar({data , children } : Prop) {
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
+          <IconButton >
+            <Link href='/'>
             <ChevronLeftIcon sx={{ marginLeft: 1, marginRight: 1 }} />
+            </Link>
+          </IconButton>
             Learning
+            
              </Typography>
           <IconButton
             color="inherit"
