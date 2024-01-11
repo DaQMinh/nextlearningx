@@ -21,7 +21,7 @@ export default function Video() {
         },
       }}>
         <iframe
-          src={`https://www.youtube.com/embed/${videoid}?autoplay=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`} 
+          src={`https://www.youtube.com/embed/${videoid}?autoplay=1&rel=0&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`} 
           title="YouTube video player" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
