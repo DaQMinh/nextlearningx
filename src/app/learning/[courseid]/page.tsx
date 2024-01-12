@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import { getVideo } from "./getVideo";
 import Sidebar from "../sidebar";
 import Video from "../videoplayer";
