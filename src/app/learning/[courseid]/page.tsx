@@ -13,19 +13,11 @@ export default async function Page({
   params: { courseid: string };
 }) {
   const data = await getVideo(params.courseid)
-
-  if(data) {
-    const playlist = data.map((item) => (item.playlist as TypesList))
+  const playlist = data.map((item) => (item.playlist as TypesList))
     
-    return (
+  return (
         <Sidebar data={playlist}>
           <Video/>
         </Sidebar>
-  
     );
-  } else {
-    return (
-      <Typography> Site is loading please wait ...</Typography>
-    )
-  }
 }
