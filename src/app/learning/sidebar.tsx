@@ -1,6 +1,5 @@
 'use client'
 import * as React from 'react';
-import { TypesList } from './[courseid]/page';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { DrawerHeader,AppBar,drawerWidth} from './sidebarcomponent';
@@ -16,29 +15,47 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Link from 'next/link';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 interface Prop {
-  data: TypesList[];
+  data: any;
   children : React.ReactNode
 }
 
-export default function Sidebar({data , children } : Prop) {
+export default function Sidebar({ data , children } : Prop) {
   const pathname = usePathname()
   const [open, setOpen] = React.useState(true);
+  const [isCollapse, setIsCollapse] = React.useState<boolean[]>(new Array(data.length).fill(true));
+  const handleCollapse = (index: number) => {
+    const updatedCollapse = [...isCollapse];
+    updatedCollapse[index] = !updatedCollapse[index];
+    setIsCollapse(updatedCollapse);
+  };
+
   const drawer = (
     <>
       <Toolbar />
       <List>
-      {data.map((item: any) => (
-        item.ids.map((id: string, index: number) => (
-          <ListItem key={id} disablePadding>
-            <ListItemButton>
-              <Link href={`${pathname}?id=${item.ids?.[index] || ''}`}>
-              <ListItemText primary={item.titles?.[index] || ''} />
-              </Link>
-            </ListItemButton>
-          </ListItem>
-        ))
+      {data.map((item : any, index : any) => (
+        <ListItem
+          key={index}
+          disablePadding
+          sx={{ display: "block" }}
+          onClick={() => handleCollapse(index)}
+        >
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: isCollapse[index] ? "center" : "initial",
+              px: 2.5,
+            }}
+          >
+          
+            <ListItemText primary={item.title} />
+            <Link href={`${pathname}/${item.title}`}></Link>
+            {isCollapse[index] ? <ExpandMore /> : <ExpandLess/>}
+          </ListItemButton>
+        </ListItem>
       ))}
       </List>
     </>
@@ -71,7 +88,7 @@ export default function Sidebar({data , children } : Prop) {
           </IconButton>
         </Toolbar>
         </AppBar>
-    <Box
+      <Box
         component="main"
         sx={{
           flexGrow: 1,
