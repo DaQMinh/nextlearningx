@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 const inter = Inter({ subsets: ["latin"] })
 import ReduxProvider from "@/redux/provider"
 import NavigationBar from "@/components/navbar"
+import { ThemeProvider } from "@/components/theme-provider"
 export const metadata: Metadata = {
   title: "NextAuth.js Example",
   description:
@@ -13,7 +14,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      
+                <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
       <ReduxProvider>
 
       <body className={inter.className}>
@@ -26,7 +32,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         </NavigationBar>
       </body>
       </ReduxProvider>
-
+      </ThemeProvider>
     </html>
   )
 }
