@@ -5,7 +5,7 @@ import CustomLink from "@/components/custom-link"
 export default function NavigationBar({ children } : React.PropsWithChildren<{}>) {
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b">
+      <header className="sticky top-0 z-50 flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b border-input">
         <Sheet>
           <SheetTrigger asChild>
             <Button className="lg:hidden border-none" size="icon" variant="outline">
