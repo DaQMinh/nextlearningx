@@ -45,18 +45,18 @@ const FlashCard: React.FC = () => {
   
     return (
       <>
-      <Card className="shadow-md min-h-[200px]"> {/* Add min-h-[200px] for a minimum height */}
-        <CardContent className="flex flex-col items-center justify-center h-full">
+      <CardContent className="flex flex-col items-center justify-center h-full border py-10 max-w-screen">
+        <div className="max-w-prose">
           <p className="text-2xl">{isFront ? front : back}</p>
-        </CardContent>
-      </Card>
+        </div>
+      </CardContent>
 
           
         <div className="flex justify-between mt-4">
-          <Button variant="outline"><Link href={'/practice'}>Practice</Link></Button>
+        <Button variant="outline" onClick={handleFlip}>Flip</Button>
   
           <div className="flex gap-4">
-            <Button variant="outline" onClick={handleFlip}>Flip</Button>
+
             <Button variant="outline" onClick={handlePrevious}>
               <ArrowLeftIcon className="h-4 w-4" />
             </Button>
